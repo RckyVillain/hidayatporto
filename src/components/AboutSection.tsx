@@ -35,7 +35,8 @@ export default function AboutSection() {
                   src="/profile.jpg"
                   alt="Ricky Hidayat"
                   fill
-                  className="object-cover object-top"
+                  className="object-cover object-center"
+                  style={{ objectPosition: "50% 15%" }}
                   priority
                 />
               </div>

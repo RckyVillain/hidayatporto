@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { useRef, MouseEvent } from "react";
+import Image from "next/image";
 
 const projects = [
   {
@@ -14,6 +15,7 @@ const projects = [
     tech: ["Next.js", "Tailwind CSS", "Vercel", "Branding"],
     link: "https://kopitiam-ciamik.vercel.app/",
     accent: "#ff0055",
+    image: "/proj-kopitiam.jpg",
   },
   {
     id: 2,
@@ -24,6 +26,7 @@ const projects = [
     tech: ["Google Apps Script", "Google Sheets", "Low-Code"],
     link: "https://script.google.com/macros/s/AKfycbwjwdmzxGq0iwq8Dh6S9V029JyfMtdzrqW0opvZsVygOd7sKbwAIIxjr5aSYzJIwvhu/exec",
     accent: "#e040fb",
+    image: "/proj-cctv.png",
   },
   {
     id: 3,
@@ -34,6 +37,7 @@ const projects = [
     tech: ["Google Apps Script", "Automation", "Cloud"],
     link: "https://script.google.com/macros/s/AKfycbzttQuFcjsUpNoGw0_nlOk0kVoDXUCQgoqMA6X8NSM2ERuf56F_sT7pdcyca9rpKq0XSw/exec",
     accent: "#00e5ff",
+    image: "/proj-dar.png",
   },
 ];
 
@@ -68,56 +72,83 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="glass-card p-6 md:p-8 flex flex-col h-full cursor-default group"
+      className="glass-card flex flex-col h-full cursor-default group overflow-hidden"
     >
-      {/* Tag */}
-      <div className="flex justify-between items-start mb-6">
-        <span
-          className="font-display text-[10px] tracking-[0.4em] uppercase px-2 py-1 rounded"
-          style={{ color: project.accent, background: `${project.accent}15`, border: `1px solid ${project.accent}30` }}
-        >
-          {project.tag}
-        </span>
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-600 hover:text-white transition-colors pointer-events-auto"
-        >
-          <ExternalLink className="w-4 h-4" />
-        </a>
-      </div>
-
-      {/* Title */}
-      <h3
-        className="font-display font-bold text-xl md:text-2xl text-white mb-1 group-hover:text-shadow-lg transition-all"
-        style={{ textShadow: `0 0 0px ${project.accent}` }}
-      >
-        {project.title}
-      </h3>
-      <p className="text-xs tracking-widest uppercase mb-4" style={{ color: project.accent }}>
-        {project.subtitle}
-      </p>
-
-      <p className="text-sm text-gray-400 leading-relaxed mb-6 flex-grow">{project.desc}</p>
-
-      {/* Tech badges */}
-      <div className="flex flex-wrap gap-2 mt-auto">
-        {project.tech.map((t) => (
+      {/* Project Image */}
+      <div className="relative w-full h-44 overflow-hidden flex-shrink-0">
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        {/* Neon overlay gradient */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(to bottom, ${project.accent}11 0%, rgba(8,8,14,0.7) 100%)`,
+          }}
+        />
+        {/* Tag floated on image */}
+        <div className="absolute top-3 left-3">
           <span
-            key={t}
-            className="font-display text-[10px] tracking-widest uppercase px-2 py-1 bg-white/5 border border-white/10 text-gray-400 rounded"
+            className="font-display text-[9px] tracking-[0.4em] uppercase px-2 py-1 rounded backdrop-blur-sm"
+            style={{
+              color: project.accent,
+              background: `rgba(8,8,14,0.75)`,
+              border: `1px solid ${project.accent}50`,
+            }}
           >
-            {t}
+            {project.tag}
           </span>
-        ))}
+        </div>
+        {/* External link floated on image */}
+        <div className="absolute top-3 right-3">
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-8 h-8 rounded-full backdrop-blur-sm transition-colors pointer-events-auto"
+            style={{ background: "rgba(8,8,14,0.75)", border: `1px solid ${project.accent}40` }}
+          >
+            <ExternalLink className="w-3.5 h-3.5 text-gray-300 hover:text-white" />
+          </a>
+        </div>
       </div>
 
-      {/* Bottom glow bar */}
-      <div
-        className="mt-6 h-px w-0 group-hover:w-full transition-all duration-700"
-        style={{ background: `linear-gradient(to right, ${project.accent}, transparent)` }}
-      />
+      {/* Card Content */}
+      <div className="p-6 flex flex-col flex-grow">
+        {/* Title */}
+        <h3
+          className="font-display font-bold text-lg md:text-xl text-white mb-1 transition-all"
+        >
+          {project.title}
+        </h3>
+        <p className="text-xs tracking-widest uppercase mb-3" style={{ color: project.accent }}>
+          {project.subtitle}
+        </p>
+
+        <p className="text-sm text-gray-400 leading-relaxed mb-5 flex-grow">{project.desc}</p>
+
+        {/* Tech badges */}
+        <div className="flex flex-wrap gap-2 mt-auto">
+          {project.tech.map((t) => (
+            <span
+              key={t}
+              className="font-display text-[10px] tracking-widest uppercase px-2 py-1 bg-white/5 border border-white/10 text-gray-400 rounded"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+
+        {/* Bottom glow bar */}
+        <div
+          className="mt-5 h-px w-0 group-hover:w-full transition-all duration-700"
+          style={{ background: `linear-gradient(to right, ${project.accent}, transparent)` }}
+        />
+      </div>
     </motion.div>
   );
 }
