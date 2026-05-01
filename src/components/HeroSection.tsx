@@ -31,17 +31,26 @@ export default function HeroSection() {
         ))}
       </motion.div>
 
-      {/* Tagline */}
+      {/* Tagline — dark pill backdrop ensures legibility over any frame */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9, duration: 0.7 }}
-        className="font-display text-xs md:text-sm tracking-[0.4em] uppercase text-gray-400 mb-12 text-center px-4"
+        className="font-display text-xs md:text-sm tracking-[0.4em] uppercase text-white mb-12 text-center px-6 py-3 mx-4 rounded-sm"
+        style={{
+          background: "rgba(8, 8, 14, 0.72)",
+          backdropFilter: "blur(8px)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          textShadow: "0 1px 8px rgba(0,0,0,0.9)",
+        }}
       >
-        AI-Assisted Developer{" "}
-        <span className="text-[#ff0055]">·</span> Security Officer{" "}
-        <span className="text-[#e040fb]">·</span> Videographer{" "}
-        <span className="text-[#00e5ff]">·</span> Photographer
+        <span className="text-[#ff6699]">AI-Assisted Developer</span>
+        {" "}<span className="text-[#ff0055] mx-1">·</span>{" "}
+        <span className="text-[#cc99ff]">Security Officer</span>
+        {" "}<span className="text-[#e040fb] mx-1">·</span>{" "}
+        <span className="text-[#66ddff]">Videographer</span>
+        {" "}<span className="text-[#00e5ff] mx-1">·</span>{" "}
+        <span className="text-[#66ddff]">Photographer</span>
       </motion.p>
 
       {/* Scroll prompt */}
@@ -51,7 +60,14 @@ export default function HeroSection() {
         transition={{ delay: 1.4, duration: 0.8 }}
         className="flex flex-col items-center gap-2 pointer-events-auto"
       >
-        <span className="font-display text-[10px] tracking-[0.5em] uppercase text-gray-500">
+        <span
+          className="font-display text-[10px] tracking-[0.5em] uppercase text-white px-4 py-2 rounded-sm"
+          style={{
+            background: "rgba(8,8,14,0.65)",
+            backdropFilter: "blur(6px)",
+            textShadow: "0 1px 6px rgba(0,0,0,0.8)",
+          }}
+        >
           Scroll to Initiate
         </span>
         <ChevronDown className="w-5 h-5 text-[#ff0055] scroll-pulse" />
