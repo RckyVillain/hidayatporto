@@ -39,6 +39,17 @@ const projects = [
     accent: "#00e5ff",
     image: "/proj-dar.png",
   },
+  {
+    id: 4,
+    tag: "PROJ_004",
+    title: "Pelaporan Harian Web App V2",
+    subtitle: "Security Dept. Vasa — Next.js",
+    desc: "Aplikasi pelaporan harian V2 dengan fitur Role-Based Access Control, Plotting Anggota, Chief Dashboard, dan AI Integration (Gemini + OpenRouter).",
+    tech: ["Next.js", "AI Integration", "RBAC", "Dashboard"],
+    link: "https://dailyactivityreport.vercel.app/",
+    accent: "#00ff88",
+    image: "/proj-dar-v2.png",
+  },
 ];
 
 function ProjectCard({ project }: { project: typeof projects[0] }) {

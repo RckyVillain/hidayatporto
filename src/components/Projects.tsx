@@ -28,6 +28,14 @@ export default function Projects() {
       tech: ["AppScript", "Google Sheets", "Automation"],
       link: "https://script.google.com/macros/s/AKfycbzttQuFcjsUpNoGw0_nlOk0kVoDXUCQgoqMA6X8NSM2ERuf56F_sT7pdcyca9rpKq0XSw/exec",
       color: "brand-neon-green"
+    },
+    {
+      id: 4,
+      title: "Pelaporan Harian Web App V2",
+      desc: "Aplikasi pelaporan harian V2 dengan fitur Role-Based Access Control, Plotting Anggota, Chief Dashboard, dan AI Integration (Gemini + OpenRouter).",
+      tech: ["Next.js", "AI Integration", "RBAC", "Dashboard"],
+      link: "https://dailyactivityreport.vercel.app/",
+      color: "brand-accent"
     }
   ];
 
